@@ -422,9 +422,9 @@ final class FormCollectionTest extends AbstractCommonTestCase
     }
 
     /**
-     * @dataProvider provideDoctypesAndPermitFlagForNameAttribute
+     * @dataProvider provideDoctypesAndPermitFlagForHtml5Attributes
      */
-    public function testRenderCollectionWithNameAttributeAndDoctypeHtml5(
+    public function testRenderCollectionWithHtml5AttributesAndDoctypeHtml5(
         string $doctype,
         bool $allowsNameAttribute
     ): void {
@@ -433,16 +433,22 @@ final class FormCollectionTest extends AbstractCommonTestCase
         $form       = $this->getForm();
         $collection = $form->get('colors');
         $collection->setAttribute('name', 'foo');
+        $collection->setAttribute('disabled', true);
+        $collection->setAttribute('form', 'bar');
 
         $markup = $this->helper->render($collection);
+        $needle = '<fieldset>';
         if ($allowsNameAttribute) {
-            $this->assertStringContainsString('<fieldset name="foo">', $markup);
-        } else {
-            $this->assertStringContainsString('<fieldset>', $markup);
+            $needle = '<fieldset name="foo" disabled form="bar">';
+            if ($this->helper->getDoctype() === 'XHTML5') {
+                $needle = '<fieldset name="foo" disabled="disabled" form="bar">';
+            }
         }
+
+        $this->assertStringContainsString($needle, $markup);
     }
 
-    public function provideDoctypesAndPermitFlagForNameAttribute(): array
+    public function provideDoctypesAndPermitFlagForHtml5Attributes(): array
     {
         return [
             [Doctype::XHTML11,             false],
@@ -457,8 +463,6 @@ final class FormCollectionTest extends AbstractCommonTestCase
             [Doctype::HTML4_LOOSE,         false],
             [Doctype::HTML4_FRAMESET,      false],
             [Doctype::HTML5,               true],
-            [Doctype::CUSTOM_XHTML,        false],
-            [Doctype::CUSTOM,              false],
         ];
     }
 }
