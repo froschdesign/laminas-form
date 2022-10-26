@@ -80,30 +80,30 @@ use Laminas\Mvc\Controller\AbstractActionController;
 
 class AlbumController extends AbstractActionController
 {
-    public function __construct(
-        public readonly FormElementManager $formElementManager
-    ) {}
+    private AlbumForm $form;
+    
+    public function __construct(FormElementManager $formElementManager)
+    {
+        $this->form = $formElementManager->get(AlbumForm::class);
+    }
     
     public function addAction()
     {
-        /** @var AlbumForm $form */
-        $form = $this->formElementManager->get(AlbumForm::class);
-    
         // Set action attribute
-        $form->setAttribute(
+        $this->form->setAttribute(
             'action',
             $this->url()->fromRoute('album', ['action' => 'add'])
         );
 
-        $variables = ['form' => $form];
+        $variables = ['form' => $this->form];
         
         if (! $this->getRequest()->isPost()) {
             return $variables;
         }
 
         // Validation
-        $form->setData($this->getRequest()->getPost());
-        if (! $form->isValid()) {
+        $this->form->setData($this->getRequest()->getPost());
+        if (! $this->form->isValid()) {
             return $variables;
         }
     
