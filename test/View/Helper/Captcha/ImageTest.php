@@ -72,7 +72,6 @@ final class ImageTest extends AbstractCommonTestCase
                 unlink($file->getPathname());
             }
         }
-        parent::tearDown();
     }
 
     public function getElement(): CaptchaElement

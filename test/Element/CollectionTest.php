@@ -51,8 +51,6 @@ final class CollectionTest extends TestCase
     {
         $this->form            = new FormCollection();
         $this->productFieldset = new ProductFieldset();
-
-        parent::setUp();
     }
 
     public function testCanRetrieveDefaultPlaceholder(): void
