@@ -399,6 +399,9 @@
     </DeprecatedMethod>
   </file>
   <file src="src/View/Helper/FormElementErrors.php">
+    <DeprecatedInterface>
+      <code><![CDATA[$this->getTranslator()]]></code>
+    </DeprecatedInterface>
     <MissingClosureParamType>
       <code><![CDATA[$item]]></code>
     </MissingClosureParamType>
@@ -428,6 +431,9 @@
     </PossiblyNullArgument>
   </file>
   <file src="src/View/Helper/FormRow.php">
+    <DeprecatedInterface>
+      <code><![CDATA[$this->getTranslator()]]></code>
+    </DeprecatedInterface>
     <PossiblyNullReference>
       <code><![CDATA[render]]></code>
     </PossiblyNullReference>
@@ -1350,6 +1356,9 @@
     </InvalidArgument>
   </file>
   <file src="test/View/Helper/FormButtonTest.php">
+    <DeprecatedInterface>
+      <code><![CDATA[$this->helper->getTranslator()]]></code>
+    </DeprecatedInterface>
     <InvalidArgument>
       <code><![CDATA[$element]]></code>
     </InvalidArgument>
@@ -1401,14 +1410,33 @@
     </PossiblyUndefinedArrayOffset>
   </file>
   <file src="test/View/Helper/FormLabelTest.php">
+    <DeprecatedInterface>
+      <code><![CDATA[$this->helper->getTranslator()]]></code>
+    </DeprecatedInterface>
     <InvalidArgument>
       <code><![CDATA[$element]]></code>
     </InvalidArgument>
+  </file>
+  <file src="test/View/Helper/FormMultiCheckboxTest.php">
+    <DeprecatedInterface>
+      <code><![CDATA[$this->helper->getTranslator()]]></code>
+    </DeprecatedInterface>
+  </file>
+  <file src="test/View/Helper/FormRadioTest.php">
+    <DeprecatedInterface>
+      <code><![CDATA[$this->helper->getTranslator()]]></code>
+    </DeprecatedInterface>
+  </file>
+  <file src="test/View/Helper/FormSelectTest.php">
+    <DeprecatedInterface>
+      <code><![CDATA[$this->helper->getTranslator()]]></code>
+    </DeprecatedInterface>
   </file>
   <file src="test/View/Helper/FormRowTest.php">
     <DeprecatedInterface>
       <code><![CDATA[$this->createMock(TranslatorInterface::class)]]></code>
       <code><![CDATA[$this->createMock(TranslatorInterface::class)]]></code>
+      <code><![CDATA[$this->helper->getTranslator()]]></code>
     </DeprecatedInterface>
     <DeprecatedMethod>
       <code><![CDATA[getHelperPluginManager]]></code>
